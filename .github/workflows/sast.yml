@@ -6,8 +6,8 @@ on:
     branches: ['main']
   workflow_dispatch:
   ## Start: Version 3
-  #pull_request:
-  #  types: [opened, reopened, synchronize]
+  pull_request:
+    types: [opened, reopened, synchronize]
   ## End: Version 3
 
 jobs:
@@ -33,16 +33,11 @@ jobs:
       #    bandit -r .
       ## End: Version 1
 
-
-
-
-
-      # Start: Version 2
+      ## Start: Version 2
       - name: Install dependencies
         shell: bash
         run: |
           pip install bandit-sarif-formatter bandit
-
       - name: Bandit
         shell: bash
         run: |
@@ -58,4 +53,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
-      # End: Version 2
+      ## End: Version 2
